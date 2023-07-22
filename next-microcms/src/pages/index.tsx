@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { GetStaticProps } from 'next'
+import { GetStaticProps } from "next"
 import { client } from '@/lib/client'
 
 export default function Home(props) {
