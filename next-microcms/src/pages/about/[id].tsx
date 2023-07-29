@@ -1,5 +1,5 @@
 import { client } from "@/lib/client";
-import { NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import Image from "next/image";
 
 type Props = {
@@ -37,7 +37,7 @@ const NewsDetail: NextPage<Props> = (props) => {
 
 export const getStaticPaths = async () => {
   const res = await client.get({ endpoint: "news", queries: { limit: 1000 } });
-  const params = res.contents.map((post) => ({
+  const params = res.contents.map((post: { id: string }) => ({
     params: { id: post.id },
   }));
   return {
@@ -46,7 +46,7 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const res = await client.get({ endpoint: "news", contentId: params.id });
 
   return {
