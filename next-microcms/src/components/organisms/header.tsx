@@ -12,6 +12,9 @@ const Header: FC = () => {
         <li>
           <Link href={"/about"}>ABOUT</Link>
         </li>
+        <li>
+          <Link href={"news"}>NEWS</Link>
+        </li>
       </ul>
     </Headerwrap>
   );

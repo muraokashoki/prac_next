@@ -3,7 +3,24 @@ import { GetStaticProps, NextPageWithLayout } from "next";
 import { client } from "@/lib/client";
 import DefaultLayout from "@/components/layout/default-layout";
 
-const Home: NextPageWithLayout = (props) => {
+type Props = {
+  data: {
+    content: string;
+    createdAt: string;
+    eyecatch: {
+      url: string;
+      height: string;
+      width: string;
+    };
+    id: string;
+    publishedAt: string;
+    revisedAt: string;
+    title: string;
+    updatedAt: string;
+  };
+};
+
+const Home: NextPageWithLayout<Props> = (props) => {
   console.log(props);
   return (
     <>
