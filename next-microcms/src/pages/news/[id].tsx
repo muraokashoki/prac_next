@@ -3,6 +3,7 @@ import { client } from "@/lib/client";
 import Image from "next/image";
 import Button from "@/components/atoms/Button";
 import { idText } from "typescript";
+import { Params } from "@/types/params";
 
 type Props = {
   data: {
@@ -43,8 +44,7 @@ const NewsDetail: NextPage<Props> = (props) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await client.get({ endpoint: "news", queries: { limit: 1000 } });
-
-  const paths = res.contents.map((post: string) => ({
+  const paths = res.contents.map((post: { id: string }) => ({
     params: { id: post.id },
   }));
 
@@ -52,7 +52,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const res = await client.get({ endpoint: "news", contentId: params.id });
+  const { id } = params as Params;
+  const res = await client.get({ endpoint: "news", contentId: id });
 
   return {
     props: {
