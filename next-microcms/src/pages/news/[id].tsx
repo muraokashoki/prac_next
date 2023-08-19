@@ -2,7 +2,6 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { client } from "@/lib/client";
 import Image from "next/image";
 import Button from "@/components/atoms/Button";
-import { idText } from "typescript";
 import { Params } from "@/types/params";
 
 type Props = {
